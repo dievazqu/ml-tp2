@@ -11,7 +11,7 @@ function e_2c()
     cVirginica = svmtrain(meas, yVirginica);
 
     classifiers = {cSetosa cVersicolor cVirginica};
-    e_2c_classify(classifiers, meas(10,:));
+    e_2c_classify(classifiers, meas);
 end
 
 function e_2c_classify(classifiers, x)
@@ -21,19 +21,13 @@ function e_2c_classify(classifiers, x)
 
     vars = size(x,2);
     % prediction = sum(x*(cSetosa.SupportVectors.*repmat(cSetosa.Alpha, 1, vars))',2) - cSetosa.Bias
-
-    acum = 0;
-    for i=1:length(cSetosa.Alpha)
-        a = cSetosa.Alpha(i);
-        sv = cSetosa.SupportVectors(i,:);
-
-        acum = acum + a*sv*x';
+    
+    for i=1:size(x,1)
+	xx = x(i,:);
+	xx = (xx + cSetosa.ScaleData.shift) .* cSetosa.ScaleData.scaleFactor;
+	prediction(i) = xx * (cSetosa.SupportVectors)' * cSetosa.Alpha + cSetosa.Bias;
     end
-
-    acum + cSetosa.Bias
-
     % prediction = cSetosa.Alpha'*cSetosa.SupportVectors'*x' + cSetosa.Bias
 
-    % find(prediction<0)
-    % length(find(prediction<0))
+    
 end
