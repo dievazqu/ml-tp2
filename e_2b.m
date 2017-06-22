@@ -1,6 +1,6 @@
 function e_2b()
     load fisheriris;
-    z = linkage(pdist(zscore(meas), 'euclidean'), 'complete');
+    z = linkage(pdist(meas, 'euclidean'), 'complete');
     idx = cluster(z, 'MaxClust', 3);
     group = [ones(50,1); ones(50,1)+1; ones(50,1)+2];
     confusionmat(group, idx)
