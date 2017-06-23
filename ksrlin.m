@@ -113,7 +113,7 @@ end
 % Plot
 if ~nargout
     plot(r.x,r.f,'r',x,y,'bo')
-    ylabel('f(x)')
-    xlabel('x')
+    ylabel('Disminucion del colesterol');
+    xlabel('Porcentaje de acatamiento');
     title('Kernel Smoothing Regression');
 end
