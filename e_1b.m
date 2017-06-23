@@ -1,8 +1,9 @@
 function e_1b()
     load('provincias.txt');
     load('coordenadas.txt');
+    % provincias = provincias(:,[1])
     names = loadstrs('nombres.txt');
-    K = 6;
+    K = 3;
     idx = kmeans(provincias, K);
     imshow('provincias_gray.png');
     hold on;
